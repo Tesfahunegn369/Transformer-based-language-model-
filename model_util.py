@@ -2,12 +2,10 @@ import math
 import torch
 from torch import nn
 
-
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, dropout=0.1, max_len=5000):
         super().__init__()
 
-        ### START CODE HERE (Replace instances of 'None' with your own code) ###
         ## Build positional encoder layer
         # Define dropout layer with the given dropout probability (Hint: Use torch.nn.Dropout)
         self.dropout = nn.Dropout(dropout)
@@ -23,8 +21,6 @@ class PositionalEncoding(nn.Module):
         pe[:, 0, 0::2] = torch.sin(position * div_term)
         pe[:, 0, 1::2] = torch.cos(position * div_term)
 
-        ### END CODE HERE ###
-
         self.pe = pe
         self.pe.requires_grad = False
 
@@ -34,21 +30,18 @@ class PositionalEncoding(nn.Module):
         Arguments:
             x: Tensor, shape [seq_len, batch_size, embedding_dim]
         """
-        ### START CODE HERE (Replace instances of 'None' with your own code) ###
         # Add positional encodings to the input token embeddings
         x = x + self.pe[:x.size(0), :, :]
 
         # Apply dropout
         x = self.dropout(x)
 
-        ### END CODE HERE ###
-
         return x
 
 
 def positionalEncodingTest():
     # test your function
-    print("\n## Q1: Implementing Positional Encoding using PyTorch (40 pts)")
+    print("\nImplementing Positional Encoding using PyTorch ")
     pe = PositionalEncoding(100, 0.0)
     if (pe(torch.zeros((1, 1, 100))).squeeze()[:10] - torch.tensor([0., 1., 0., 1., 0., 1., 0., 1., 0., 1.])).abs().sum().item() < 0.0001:
         print('SUCCESS')
