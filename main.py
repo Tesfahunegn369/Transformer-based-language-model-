@@ -16,7 +16,6 @@ from model import TransformerModel
 from data_process import data_process, get_batch, batchify
 from model_util import positionalEncodingTest
 
-
 def main():
     # Configuration
     batch_size = 20         # Batch size for training
@@ -62,9 +61,9 @@ def main():
 
     ntokens = len(vocab)  # size of vocabulary
 
-    positionalEncodingTest()  # Q1
+    positionalEncodingTest() 
 
-    print("\n## Q2: Building Transformer Encoder using PyTorch (60 pts)")
+    print("\nBuilding Transformer Encoder using PyTorch ")
     # Build Transformer model
     model = TransformerModel(ntokens, emsize, nhead, d_hid, nlayers, dropout, device).to(device)
     criterion = nn.CrossEntropyLoss()
