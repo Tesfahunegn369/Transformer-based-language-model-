@@ -24,7 +24,6 @@ class PositionalEncoding(nn.Module):
         self.pe = pe
         self.pe.requires_grad = False
 
-
     def forward(self, x):
         """
         Arguments:
@@ -37,7 +36,6 @@ class PositionalEncoding(nn.Module):
         x = self.dropout(x)
 
         return x
-
 
 def positionalEncodingTest():
     # test your function
