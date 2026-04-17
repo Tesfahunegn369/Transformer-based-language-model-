@@ -10,8 +10,6 @@ class TransformerModel(nn.Module):
         self.model_type = 'Transformer'
         self.d_model = d_model
         self.device = device
-
-        ### START CODE HERE (Replace instances of 'None' with your own code) ###
         # Define the positional encoder with embedding dimension and dropout probability
         self.pos_encoder =  PositionalEncoding(d_model, dropout)
 
@@ -27,8 +25,6 @@ class TransformerModel(nn.Module):
 
         # Define Linear layer (Feed-forward layer) (Hint: Use torch.nn.Linear)
         self.linear = nn.Linear(d_model, ntoken)
-
-        ### END CODE HERE ###
 
         # Initialize the model parameters
         self.init_weights()
@@ -54,7 +50,6 @@ class TransformerModel(nn.Module):
         # Input token embeddings
         src = self.embedding(src) * math.sqrt(self.d_model)
 
-        ### START CODE HERE (Replace instances of 'None' with your own code) ###
         # Apply positional encoder to add positional encoding
         src = self.pos_encoder(src)
 
@@ -69,7 +64,5 @@ class TransformerModel(nn.Module):
 
         # Apply point-wise feed-forward network to transform the tensor with shape (..., d_model) to (..., ntoken)
         output = self.linear(output)
-
-        # ### END CODE HERE ###
 
         return output
